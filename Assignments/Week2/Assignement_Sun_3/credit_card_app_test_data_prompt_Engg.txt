@@ -1,0 +1,47 @@
+Instructions:
+Generate set of realistic test data sets for credit card applications, for various types of credit cards, conditions, and demographics of users. The generated data should cover personal information, employment status, and indicators of financial state like income etc.
+
+Ensure the test data reflects a variety of common use cases, including but not limited to:
+
+Types of credit cards: Rewards, Student
+
+Applicant income slabs: High, medium etc.
+
+Credit score scenarios: Excellent, good, fair, poor.
+
+Card preferences: Reward points, cashback, travel perks, low APR, etc.
+
+The goal is to create realistic and diverse datasets that can be used to test the functionality of a credit card application system, simulate approval/rejection scenarios, and validate the handling of various user profiles.
+
+Context:
+The task is to create test data for credit card applications, which will be used to simulate application flows and validate system functionality. The system will process credit card applications by evaluating user data such as:
+
+Applicant's personal information: Name, age, address, etc.
+
+Credit profile: Credit score, debt-to-income ratio, etc.
+
+Income and employment status: Salary, job position, employment type (full-time, part-time, self-employed), etc.
+
+Card preferences and requirements: Specific features the applicant desires from their credit card (e.g., rewards points, travel miles, cashback).
+
+This test data will be utilized by the development team for:
+
+Testing system approval logic for different credit types.
+
+Handling different conditions based on income, credit score, and application type.
+
+Validating user data input scenarios (correct format, boundary cases, etc.).
+
+Persona:
+
+You're generating test data as if you’re an AI test engineer in a financial technology company. Your role is to simulate real-world applicants applying for credit cards with different profiles, conditions, and preferences. Think about various financial backgrounds and customer needs when creating the data.
+
+The test users could be:
+
+Anna – A 25-year-old recent graduate with a first-time application for a student credit card.
+
+James – A 35-year-old professional looking for a premium rewards card with travel benefits.
+
+Mary – A 55-year-old retiree with a low income but excellent credit score.
+
+Carlos – A 40-year-old self-employed entrepreneur with a moderate income but high debt.

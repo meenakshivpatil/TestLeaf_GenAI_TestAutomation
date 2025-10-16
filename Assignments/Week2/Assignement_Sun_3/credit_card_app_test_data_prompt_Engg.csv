@@ -1,0 +1,21 @@
+applicant_id,name,age,address,employment_status,annual_income,credit_score,credit_history,preferred_card_type,card_features,loan_amount_requested,card_approval_decision,reasons_for_rejection
+1,Anna Johnson,25,"123 Elm St, Springfield, IL",Full-time,35000,720,No prior credit,Student Credit Card,"No annual fee, Cashback rewards",5000,Approved,NULL
+2,James Smith,35,"456 Oak Ave, Dallas, TX",Full-time,95000,810,Excellent,Premium Rewards Card,"Travel miles, Higher credit limit, No foreign transaction fees",20000,Approved,NULL
+3,Mary Roberts,55,"789 Pine Rd, Atlanta, GA",Retired,22000,850,Excellent,Cashback Credit Card,"0% APR, No annual fee, Cashback on groceries",1500,Approved,NULL
+4,Carlos Mendoza,40,"101 Maple Blvd, Miami, FL",Self-employed,45000,650,Fair,Business Credit Card,"Low interest rate, Cashback on business expenses",8000,Rejected,High debt-to-income ratio
+5,Sophia Wang,28,"321 Birch St, Los Angeles, CA",Full-time,55000,700,Good,Cashback Credit Card,"1% cashback, No annual fee",7000,Approved,NULL
+6,Mark Davidson,50,"987 Cedar Ln, Chicago, IL",Full-time,120000,800,Excellent,Premium Rewards Card,"Travel perks, No foreign transaction fees, Higher credit limit",25000,Approved,NULL
+7,Emily Jackson,22,"654 Pine St, Boston, MA",Student,15000,680,Fair,Student Credit Card,"No annual fee, Cashback on dining, Low credit limit",3000,Approved,NULL
+8,Nathan Lee,45,"222 Maple St, San Francisco, CA",Part-time,38000,710,Good,Rewards Credit Card,"Points for groceries, No annual fee",6000,Approved,NULL
+9,Isabella Clark,60,"234 Oak Blvd, Phoenix, AZ",Retired,40000,750,Good,Cashback Credit Card,"Cashback on groceries, Low APR",4000,Approved,NULL
+10,Richard Wilson,30,"786 Oak St, Portland, OR",Full-time,75000,730,Good,Travel Rewards Card,"Miles, No annual fee, Lounge access",10000,Approved,NULL
+11,Ava Martinez,24,"432 Willow Rd, Denver, CO",Full-time,33000,660,Fair,Student Credit Card,"No annual fee, Cashback on dining",5000,Approved,NULL
+12,Benjamin Taylor,39,"789 Birch St, Salt Lake City, UT",Full-time,68000,770,Good,Premium Rewards Card,"Travel miles, Higher credit limit, Cashback on dining",15000,Approved,NULL
+13,Grace Adams,29,"546 Oak Dr, Seattle, WA",Full-time,55000,690,Fair,Cashback Credit Card,"Cashback on groceries, No annual fee",4000,Approved,NULL
+14,David Harris,33,"889 Maple Rd, Nashville, TN",Self-employed,42000,720,Good,Business Credit Card,"Cashback on business expenses, Low APR",8000,Approved,NULL
+15,Olivia King,40,"123 Elm St, Miami, FL",Full-time,100000,790,Excellent,Rewards Credit Card,"Points for dining, Free concierge service",20000,Approved,NULL
+16,Lucas Scott,27,"564 Pine St, Austin, TX",Full-time,48000,710,Good,Cashback Credit Card,"2% cashback on groceries, No annual fee",8000,Approved,NULL
+17,Lily White,58,"903 Cedar Ln, Miami, FL",Retired,30000,780,Excellent,Cashback Credit Card,"1% cashback on all purchases, No annual fee",4000,Approved,NULL
+18,Noah Baker,32,"321 Oak Rd, New York, NY",Part-time,28000,640,Fair,Rewards Credit Card,"Points for travel, No annual fee",5000,Rejected,Low credit score
+19,Mia Turner,26,"654 Birch St, Chicago, IL",Full-time,45000,690,Good,Rewards Credit Card,"1% cashback on groceries, No annual fee",6000,Approved,NULL
+20,Elijah Perez,38,"745 Oak Blvd, Los Angeles, CA",Full-time,90000,750,Good,Premium Rewards Card,"Travel miles, Higher credit limit, Lounge access",15000,Approved,NULL

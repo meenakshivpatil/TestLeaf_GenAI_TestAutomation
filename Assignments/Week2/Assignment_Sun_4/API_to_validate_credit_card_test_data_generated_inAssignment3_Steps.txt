@@ -1,0 +1,105 @@
+1) Used CSV data generated from manually using chatGPT with prompt Engginering to generate test data from assignment 3.
+2) Created request with prompt and test data and rules to validate (also took help from chatGPT to get below prompt and rules).
+  changed it into single line and also escaped " so that API request parameter in postman is happy with entire line having no double quoates.
+3) called API with request shown after this prompt
+
+
+=============== PROMPT===========================
+
+I have a dataset of credit card application records with 20 applicants. Please validate this dataset and look for any inconsistencies, missing information, or invalid values. Here are the rules for validation:
+
+1. **Credit Score Validation**: 
+   - Excellent: 800-850
+   - Good: 700-799
+   - Fair: 600-699
+   - Poor: 500-599
+
+2. **Income Validation**:
+   - Low Income: < $30,000
+   - Medium Income: $30,000 - $60,000
+   - High Income: > $60,000
+
+3. **Credit Card Type**: 
+   - A Student Credit Card should not be issued to applicants older than 30.
+   - Business credit cards should only be issued to applicants with self-employed or full-time employment status.
+
+4. **Employment Status Validation**: 
+   - A retired person should have a low or moderate income, typically under $50,000.
+   - Applicants with a "Fair" credit score or lower should not request more than $8,000 on a card.
+
+Please check the dataset below for any discrepancies or invalid entries.
+
+---
+
+**Dataset for Validation in CSV:**
+applicant_id,name,age,address,employment_status,annual_income,credit_score,credit_history,preferred_card_type,card_features,loan_amount_requested,card_approval_decision,reasons_for_rejection
+1,Anna Johnson,25,"123 Elm St, Springfield, IL",Full-time,35000,720,No prior credit,Student Credit Card,"No annual fee, Cashback rewards",5000,Approved,NULL
+2,James Smith,35,"456 Oak Ave, Dallas, TX",Full-time,95000,810,Excellent,Premium Rewards Card,"Travel miles, Higher credit limit, No foreign transaction fees",20000,Approved,NULL
+3,Mary Roberts,55,"789 Pine Rd, Atlanta, GA",Retired,22000,850,Excellent,Cashback Credit Card,"0% APR, No annual fee, Cashback on groceries",1500,Approved,NULL
+4,Carlos Mendoza,40,"101 Maple Blvd, Miami, FL",Self-employed,45000,650,Fair,Business Credit Card,"Low interest rate, Cashback on business expenses",8000,Rejected,High debt-to-income ratio
+5,Sophia Wang,28,"321 Birch St, Los Angeles, CA",Full-time,55000,700,Good,Cashback Credit Card,"1% cashback, No annual fee",7000,Approved,NULL
+6,Mark Davidson,50,"987 Cedar Ln, Chicago, IL",Full-time,120000,800,Excellent,Premium Rewards Card,"Travel perks, No foreign transaction fees, Higher credit limit",25000,Approved,NULL
+7,Emily Jackson,22,"654 Pine St, Boston, MA",Student,15000,680,Fair,Student Credit Card,"No annual fee, Cashback on dining, Low credit limit",3000,Approved,NULL
+8,Nathan Lee,45,"222 Maple St, San Francisco, CA",Part-time,38000,710,Good,Rewards Credit Card,"Points for groceries, No annual fee",6000,Approved,NULL
+9,Isabella Clark,60,"234 Oak Blvd, Phoenix, AZ",Retired,40000,750,Good,Cashback Credit Card,"Cashback on groceries, Low APR",4000,Approved,NULL
+10,Richard Wilson,30,"786 Oak St, Portland, OR",Full-time,75000,730,Good,Travel Rewards Card,"Miles, No annual fee, Lounge access",10000,Approved,NULL
+11,Ava Martinez,24,"432 Willow Rd, Denver, CO",Full-time,33000,660,Fair,Student Credit Card,"No annual fee, Cashback on dining",5000,Approved,NULL
+12,Benjamin Taylor,39,"789 Birch St, Salt Lake City, UT",Full-time,68000,770,Good,Premium Rewards Card,"Travel miles, Higher credit limit, Cashback on dining",15000,Approved,NULL
+13,Grace Adams,29,"546 Oak Dr, Seattle, WA",Full-time,55000,690,Fair,Cashback Credit Card,"Cashback on groceries, No annual fee",4000,Approved,NULL
+14,David Harris,33,"889 Maple Rd, Nashville, TN",Self-employed,42000,720,Good,Business Credit Card,"Cashback on business expenses, Low APR",8000,Approved,NULL
+15,Olivia King,40,"123 Elm St, Miami, FL",Full-time,100000,790,Excellent,Rewards Credit Card,"Points for dining, Free concierge service",20000,Approved,NULL
+16,Lucas Scott,27,"564 Pine St, Austin, TX",Full-time,48000,710,Good,Cashback Credit Card,"2% cashback on groceries, No annual fee",8000,Approved,NULL
+17,Lily White,58,"903 Cedar Ln, Miami, FL",Retired,30000,780,Excellent,Cashback Credit Card,"1% cashback on all purchases, No annual fee",4000,Approved,NULL
+18,Noah Baker,32,"321 Oak Rd, New York, NY",Part-time,28000,640,Fair,Rewards Credit Card,"Points for travel, No annual fee",5000,Rejected,Low credit score
+19,Mia Turner,26,"654 Birch St, Chicago, IL",Full-time,45000,690,Good,Rewards Credit Card,"1% cashback on groceries, No annual fee",6000,Approved,NULL
+20,Elijah Perez,38,"745 Oak Blvd, Los Angeles, CA",Full-time,90000,750,Good,Premium Rewards Card,"Travel miles, Higher credit limit, Lounge access",15000,Approved,NULL
+
+
+
+===============================================================================================
+POST https://api.groq.com/openai/v1/chat/completions
+
+Request:
+{
+  "model": "llama-3.3-70b-versatile",
+  "messages": [{
+      "role": "user",
+      "content": "I have a dataset of credit card application records with 20 applicants. Please validate this dataset and look for any inconsistencies, missing information, or invalid values. Here are the rules for validation:\n\n1. **Credit Score Validation**: \n   - Excellent: 800-850\n   - Good: 700-799\n   - Fair: 600-699\n   - Poor: 500-599\n\n2. **Income Validation**:\n   - Low Income: < $30,000\n   - Medium Income: $30,000 - $60,000\n   - High Income: > $60,000\n\n3. **Credit Card Type**: \n   - A Student Credit Card should not be issued to applicants older than 30.\n   - Business credit cards should only be issued to applicants with self-employed or full-time employment status.\n\n4. **Employment Status Validation**: \n   - A retired person should have a low or moderate income, typically under $50,000.\n   - Applicants with a \"Fair\" credit score or lower should not request more than $8,000 on a card.\n\nPlease check the dataset below for any discrepancies or invalid entries.\n\n---\n\n**Dataset for Validation in CSV:**\napplicant_id,name,age,address,employment_status,annual_income,credit_score,credit_history,preferred_card_type,card_features,loan_amount_requested,card_approval_decision,reasons_for_rejection\n1,Anna Johnson,25,\"123 Elm St, Springfield, IL\",Full-time,35000,720,No prior credit,Student Credit Card,\"No annual fee, Cashback rewards\",5000,Approved,NULL\n2,James Smith,35,\"456 Oak Ave, Dallas, TX\",Full-time,95000,810,Excellent,Premium Rewards Card,\"Travel miles, Higher credit limit, No foreign transaction fees\",20000,Approved,NULL\n3,Mary Roberts,55,\"789 Pine Rd, Atlanta, GA\",Retired,22000,850,Excellent,Cashback Credit Card,\"0% APR, No annual fee, Cashback on groceries\",1500,Approved,NULL\n4,Carlos Mendoza,40,\"101 Maple Blvd, Miami, FL\",Self-employed,45000,650,Fair,Business Credit Card,\"Low interest rate, Cashback on business expenses\",8000,Rejected,High debt-to-income ratio\n5,Sophia Wang,28,\"321 Birch St, Los Angeles, CA\",Full-time,55000,700,Good,Cashback Credit Card,\"1% cashback, No annual fee\",7000,Approved,NULL\n6,Mark Davidson,50,\"987 Cedar Ln, Chicago, IL\",Full-time,120000,800,Excellent,Premium Rewards Card,\"Travel perks, No foreign transaction fees, Higher credit limit\",25000,Approved,NULL\n7,Emily Jackson,22,\"654 Pine St, Boston, MA\",Student,15000,680,Fair,Student Credit Card,\"No annual fee, Cashback on dining, Low credit limit\",3000,Approved,NULL\n8,Nathan Lee,45,\"222 Maple St, San Francisco, CA\",Part-time,38000,710,Good,Rewards Credit Card,\"Points for groceries, No annual fee\",6000,Approved,NULL\n9,Isabella Clark,60,\"234 Oak Blvd, Phoenix, AZ\",Retired,40000,750,Good,Cashback Credit Card,\"Cashback on groceries, Low APR\",4000,Approved,NULL\n10,Richard Wilson,30,\"786 Oak St, Portland, OR\",Full-time,75000,730,Good,Travel Rewards Card,\"Miles, No annual fee, Lounge access\",10000,Approved,NULL\n11,Ava Martinez,24,\"432 Willow Rd, Denver, CO\",Full-time,33000,660,Fair,Student Credit Card,\"No annual fee, Cashback on dining\",5000,Approved,NULL\n12,Benjamin Taylor,39,\"789 Birch St, Salt Lake City, UT\",Full-time,68000,770,Good,Premium Rewards Card,\"Travel miles, Higher credit limit, Cashback on dining\",15000,Approved,NULL\n13,Grace Adams,29,\"546 Oak Dr, Seattle, WA\",Full-time,55000,690,Fair,Cashback Credit Card,\"Cashback on groceries, No annual fee\",4000,Approved,NULL\n14,David Harris,33,\"889 Maple Rd, Nashville, TN\",Self-employed,42000,720,Good,Business Credit Card,\"Cashback on business expenses, Low APR\",8000,Approved,NULL\n15,Olivia King,40,\"123 Elm St, Miami, FL\",Full-time,100000,790,Excellent,Rewards Credit Card,\"Points for dining, Free concierge service\",20000,Approved,NULL\n16,Lucas Scott,27,\"564 Pine St, Austin, TX\",Full-time,48000,710,Good,Cashback Credit Card,\"2% cashback on groceries, No annual fee\",8000,Approved,NULL\n17,Lily White,58,\"903 Cedar Ln, Miami, FL\",Retired,30000,780,Excellent,Cashback Credit Card,\"1% cashback on all purchases, No annual fee\",4000,Approved,NULL\n18,Noah Baker,32,\"321 Oak Rd, New York, NY\",Part-time,28000,640,Fair,Rewards Credit Card,\"Points for travel, No annual fee\",5000,Rejected,Low credit score\n19,Mia Turner,26,\"654 Birch St, Chicago, IL\",Full-time,45000,690,Good,Rewards Credit Card,\"1% cashback on groceries, No annual fee\",6000,Approved,NULL\n20,Elijah Perez,38,\"745 Oak Blvd, Los Angeles, CA\",Full-time,90000,750,Good,Premium Rewards Card,\"Travel miles, Higher credit limit, Lounge access\",15000,Approved,NULL"
+  }],
+  "temperature": 0.6
+}
+
+
+Response:
+{
+    "id": "chatcmpl-d2f01709-ac2e-4049-9458-a8cad4f5089f",
+    "object": "chat.completion",
+    "created": 1760632551,
+    "model": "llama-3.3-70b-versatile",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Validation Results\n====================\nThe provided dataset has been validated according to the specified rules. The following inconsistencies, missing information, or invalid values were found:\n\n### Credit Score Validation\n\n* All credit scores are within the valid range (500-850).\n\n### Income Validation\n\n* All incomes are valid, but some may not match the expected income range for certain employment statuses or credit card types.\n\n### Credit Card Type Validation\n\n* **Student Credit Card:** \n  + Ava Martinez (age 24) and Emily Jackson (age 22) are eligible for a Student Credit Card.\n  + Anna Johnson (age 25) is also eligible for a Student Credit Card.\n  However, **no applicants older than 30 have been issued a Student Credit Card**, so this rule is not violated.\n* **Business Credit Card:**\n  + Carlos Mendoza (self-employed) and David Harris (self-employed) are eligible for a Business Credit Card.\n  + **No business credit cards have been issued to applicants without self-employed or full-time employment status**, so this rule is not violated.\n\n### Employment Status Validation\n\n* **Retired persons:**\n  + Mary Roberts (age 55, retired, income $22,000) has a low income, which is valid.\n  + Isabella Clark (age 60, retired, income $40,000) has a moderate income, which is valid.\n  + Lily White (age 58, retired, income $30,000) has a low income, which is valid.\n  + **No retired persons have an income above $50,000**, so this rule is not violated.\n\n### Credit Score and Loan Amount Validation\n\n* **Fair credit score or lower (500-699) and loan amount:**\n  + Carlos Mendoza (credit score 650, loan amount $8,000) is valid.\n  + Emily Jackson (credit score 680, loan amount $3,000) is valid.\n  + Ava Martinez (credit score 660, loan amount $5,000) is valid.\n  + Grace Adams (credit score 690, loan amount $4,000) is valid.\n  + Noah Baker (credit score 640, loan amount $5,000) is valid.\n  + Mia Turner (credit score 690, loan amount $6,000) is **invalid**, as the loan amount exceeds $5,000 for a Fair credit score.\n  + **No other applicants with a Fair credit score or lower have requested a loan amount above $8,000**, so this rule is mostly not violated, except for Mia Turner.\n\nOther Observations\n-----------------\n\n* Some applicants have been rejected due to a high debt-to-income ratio (e.g., Carlos Mendoza) or low credit score (e.g., Noah Baker).\n* The dataset does not contain any missing information or obviously invalid values (e.g., negative incomes or credit scores).\n\nConclusion\n----------\n\nThe dataset is mostly valid, with only one instance of an invalid loan amount for an applicant with a Fair credit score (Mia Turner). It is recommended to review Mia Turner's application and adjust the loan amount accordingly. Additionally, the credit card issuer may want to consider implementing more stringent rules or guidelines for approving credit card applications, especially for applicants with lower credit scores or higher loan amounts."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "queue_time": 0.044821905,
+        "prompt_tokens": 1253,
+        "prompt_time": 0.104158345,
+        "completion_tokens": 673,
+        "completion_time": 1.822678431,
+        "total_tokens": 1926,
+        "total_time": 1.926836776
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_9e1e8f8435",
+    "x_groq": {
+        "id": "req_01k7py1bx1f12rcxa9g142e0q4"
+    },
+    "service_tier": "on_demand"
+}
