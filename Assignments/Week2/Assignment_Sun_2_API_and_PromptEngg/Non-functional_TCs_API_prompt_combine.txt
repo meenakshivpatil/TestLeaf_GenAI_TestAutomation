@@ -1,0 +1,95 @@
+Adding more prompt instructions than simply asking to generate.
+ICE POT, resulting into more details of variations to be tested in test cases.
+
+
+use https://api.groq.com/openai/v1/chat/completions via postman to get non-functional test cases.
+Request payload:
+{
+  "model": "llama-3.3-70b-versatile",
+  "messages": [
+         {
+            "role": "system",
+            "content": "Context: You are an testing expert in performance, security, usability testing.  Application caters to thousands of concurrent users. Persona: Senior performance test engineer with clear and precise instructions.  Output format:  use heading, and sub-heading and numbered lists for points under each group of test cases. Tone: strict"
+        },
+
+  {
+      "role": "user",
+      "content": "Instructions:Create Non functional test cases with multiple test conditions  for the application supporting the use cases : Title: Update Debit Card Limits\n\nAs a bank customer,\nI want to update the transaction limits on my debit card,\nSo that I can control my spending and enhance security based on my personal preferences.\n\nAcceptance Criteria:\n\nLimit Types:\nThe user should be able to update different types of limits, such as:\n\nDaily purchase limit\n\nDaily ATM withdrawal limit\n\nContactless payment limit (if applicable)\n\nValidation:\n\nThe system should validate the new limit values to ensure they are within the allowed range set by the bank.\n\nThe user should receive an error message if they enter an invalid or unsupported limit.\n\nAuthentication:\n\nThe user must be authenticated (e.g., via login, OTP, or biometric) before updating the limits.\n\nConfirmation:\n\nAfter submitting the change, the user should receive a confirmation message indicating the new limits are in effect.\n\nOptionally, a confirmation email or push notification should be sent.\n\nAudit Trail:\n\nThe change should be logged in the system for auditing purposes and viewable in the user’s activity history."
+  }],
+  "temperature": 0.6
+}
+
+
+=========================== formatted output ===========
+
+
+Non-Functional Test Cases for Update Debit Card Limits
+Performance Test Cases
+
+Concurrent User Load:
+Test the application with 1000, 5000, and 10000 concurrent users updating their debit card limits to ensure the system can handle the load without significant performance degradation.
+
+Response Time:
+Measure the response time for updating debit card limits under various load conditions (e.g., 100, 500, 1000 users) to ensure it remains within the acceptable range (< 2 seconds).
+
+Resource Utilization:
+Monitor CPU, memory, and disk usage while updating debit card limits to ensure the system does not exceed 80% utilization.
+
+Scalability:
+Test the application's ability to scale horizontally (add more servers) and vertically (increase server resources) to handle increased traffic.
+
+Security Test Cases
+
+Authentication Testing:
+Verify that only authenticated users can update their debit card limits by attempting to access the feature without logging in.
+
+Input Validation:
+Test the application's input validation by entering invalid or unsupported limit values (e.g., negative numbers, non-numeric characters) to ensure error messages are displayed.
+
+SQL Injection:
+Attempt to inject malicious SQL code while updating debit card limits to ensure the application is not vulnerable to SQL injection attacks.
+
+Cross-Site Scripting (XSS):
+Test the application's vulnerability to XSS attacks by injecting malicious code while updating debit card limits.
+
+Usability Test Cases
+
+User Interface:
+Verify that the update debit card limits feature is easily accessible and intuitive to use.
+
+Error Handling:
+Test the application's error handling by entering invalid or unsupported limit values and verifying that clear error messages are displayed.
+
+Confirmation Message:
+Verify that a confirmation message is displayed after updating debit card limits and that it accurately reflects the new limits.
+
+Accessibility:
+Test the application's accessibility features (e.g., screen reader compatibility, high contrast mode) to ensure that users with disabilities can update their debit card limits.
+
+Reliability Test Cases
+
+Data Persistence:
+Verify that updated debit card limits are persisted across system restarts and user sessions.
+
+Idempotence:
+Test the application's idempotence by updating debit card limits multiple times with the same values to ensure the system remains in a consistent state.
+
+Recovery:
+Test the application's recovery mechanism by intentionally causing errors while updating debit card limits and verifying that the system can recover from the errors.
+
+Audit Trail:
+Verify that all updates to debit card limits are logged in the system and visible in the user's activity history.
+
+Compatibility Test Cases
+
+Browser Compatibility:
+Test the application's compatibility with different browsers (e.g., Chrome, Firefox, Safari) and versions.
+
+Device Compatibility:
+Test the application's compatibility with different devices (e.g., desktop, laptop, mobile) and operating systems.
+
+Screen Resolution:
+Test the application's compatibility with different screen resolutions (e.g., 1024x768, 1280x1024) to ensure the layout remains consistent.
+
+Localization:
+Test the application's compatibility with different languages and regions to ensure the update debit card limits feature works as expected.
