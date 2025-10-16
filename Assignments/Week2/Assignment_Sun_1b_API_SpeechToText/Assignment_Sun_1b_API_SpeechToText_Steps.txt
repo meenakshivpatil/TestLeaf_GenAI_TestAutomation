@@ -1,0 +1,29 @@
+Step 1: Created a audio file, speech.wav. Could have recorded it. but I tried using groq API to generate it from text.
+POST https://api.groq.com/openai/v1/audio/speech
+Request
+{
+    "model": "playai-tts",
+    "input": "I am working on TestLeaf Assignment week2 speech to text via Groq API",
+    "voice": "Gail-PlayAI",
+    "response_format": "wav"
+}
+
+Response
+--- Audio file that i saved as TextToSpeech_Response.wav that i used in next step
+
+
+Step 2:
+POST https://api.groq.com/openai/v1/audio/transcriptions
+
+Request Body as form data with 2 fields
+1) model as text : whisper-large-v3
+2) file: TextToSpeech_Response.wav
+
+
+Response
+{
+    "text": " I am working on test leave assignment week two, speech to text via Grok API.",
+    "x_groq": {
+        "id": "req_01k7pkexcze14bh8wmdwz7gkb4"
+    }
+}

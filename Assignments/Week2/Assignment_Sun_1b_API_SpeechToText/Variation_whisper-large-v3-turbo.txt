@@ -1,0 +1,11 @@
+whisper-large-v3-turbo gave correct conversion to testleaf compared to test leave when used whisper-large-v3
+
+
+https://api.groq.com/openai/v1/audio/transcriptions?model=whisper-large-v3-turbo&file
+
+{
+    "text": " I am working on TestLeaf Assignment Week 2, Speech-to-Text via Grok API.",
+    "x_groq": {
+        "id": "req_01k7pqef3femdb30x9w6vr4092"
+    }
+}

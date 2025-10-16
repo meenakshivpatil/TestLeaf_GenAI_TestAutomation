@@ -1,0 +1,157 @@
+Sun-Assignment-1 a)
+
+1) created a user story using chatgpt giving prompt: user story text covering user to update debit card limits
+
+2) Used below generate user story to ask to get non-functional test cases:
+Title: Update Debit Card Limits
+
+As a bank customer,
+I want to update the transaction limits on my debit card,
+So that I can control my spending and enhance security based on my personal preferences.
+
+Acceptance Criteria:
+
+Limit Types:
+The user should be able to update different types of limits, such as:
+
+Daily purchase limit
+
+Daily ATM withdrawal limit
+
+Contactless payment limit (if applicable)
+
+Validation:
+
+The system should validate the new limit values to ensure they are within the allowed range set by the bank.
+
+The user should receive an error message if they enter an invalid or unsupported limit.
+
+Authentication:
+
+The user must be authenticated (e.g., via login, OTP, or biometric) before updating the limits.
+
+Confirmation:
+
+After submitting the change, the user should receive a confirmation message indicating the new limits are in effect.
+
+Optionally, a confirmation email or push notification should be sent.
+
+Audit Trail:
+
+The change should be logged in the system for auditing purposes and viewable in the user’s activity history.
+
+
+3) Non functional test cases generated:
+Title: Update Debit Card Limits
+
+As a bank customer,
+I want to update the transaction limits on my debit card,
+So that I can control my spending and enhance security based on my personal preferences.
+
+Acceptance Criteria:
+
+Limit Types:
+The user should be able to update different types of limits, such as:
+
+Daily purchase limit
+
+Daily ATM withdrawal limit
+
+Contactless payment limit (if applicable)
+
+Validation:
+
+The system should validate the new limit values to ensure they are within the allowed range set by the bank.
+
+The user should receive an error message if they enter an invalid or unsupported limit.
+
+Authentication:
+
+The user must be authenticated (e.g., via login, OTP, or biometric) before updating the limits.
+
+Confirmation:
+
+After submitting the change, the user should receive a confirmation message indicating the new limits are in effect.
+
+Optionally, a confirmation email or push notification should be sent.
+
+Audit Trail:
+
+The change should be logged in the system for auditing purposes and viewable in the user’s activity history.
+
+4) Using notepad++ made all lines of User story into single line with \n so that it can be used as a long string as a payload into API
+	find \r\n
+	replace \\n
+	Check "Match case"
+	Check "Extended" in Search Mode
+	
+	Then click on "replace all" giving below result of entire User story in one line.
+	
+
+
+Title: Update Debit Card Limits\n\nAs a bank customer,\nI want to update the transaction limits on my debit card,\nSo that I can control my spending and enhance security based on my personal preferences.\n\nAcceptance Criteria:\n\nLimit Types:\nThe user should be able to update different types of limits, such as:\n\nDaily purchase limit\n\nDaily ATM withdrawal limit\n\nContactless payment limit (if applicable)\n\nValidation:\n\nThe system should validate the new limit values to ensure they are within the allowed range set by the bank.\n\nThe user should receive an error message if they enter an invalid or unsupported limit.\n\nAuthentication:\n\nThe user must be authenticated (e.g., via login, OTP, or biometric) before updating the limits.\n\nConfirmation:\n\nAfter submitting the change, the user should receive a confirmation message indicating the new limits are in effect.\n\nOptionally, a confirmation email or push notification should be sent.\n\nAudit Trail:\n\nThe change should be logged in the system for auditing purposes and viewable in the user’s activity history.
+
+
+5) use https://api.groq.com/openai/v1/chat/completions via postman to get non-functional test cases.
+Request payload:
+{
+  "model": "llama-3.3-70b-versatile",
+  "messages": [{
+      "role": "user",
+      "content": "Generate Non functional test cases for the use case : Title: Update Debit Card Limits\n\nAs a bank customer,\nI want to update the transaction limits on my debit card,\nSo that I can control my spending and enhance security based on my personal preferences.\n\nAcceptance Criteria:\n\nLimit Types:\nThe user should be able to update different types of limits, such as:\n\nDaily purchase limit\n\nDaily ATM withdrawal limit\n\nContactless payment limit (if applicable)\n\nValidation:\n\nThe system should validate the new limit values to ensure they are within the allowed range set by the bank.\n\nThe user should receive an error message if they enter an invalid or unsupported limit.\n\nAuthentication:\n\nThe user must be authenticated (e.g., via login, OTP, or biometric) before updating the limits.\n\nConfirmation:\n\nAfter submitting the change, the user should receive a confirmation message indicating the new limits are in effect.\n\nOptionally, a confirmation email or push notification should be sent.\n\nAudit Trail:\n\nThe change should be logged in the system for auditing purposes and viewable in the user’s activity history."
+  }],
+  "temperature": 0.6
+}
+
+Received response:
+"Here are some non-functional test cases for the use case \"Update Debit Card Limits\":\n\n**Performance Test Cases:**\n\n1. **Response Time**: Verify that the update debit card limits feature responds within 2 seconds when a user submits a valid request.\n2. **Load Testing**: Test the system with a large number of concurrent users (e.g., 1000) updating their debit card limits to ensure the system can handle the load without significant performance degradation.\n3. **Stress Testing**: Test the system with an extremely large number of concurrent users (e.g., 10,000) updating their debit card limits to identify the breaking point.\n\n**Security Test Cases:**\n\n1. **Authentication Bypass**: Attempt to update debit card limits without authenticating to ensure that the system requires authentication before allowing changes.\n2. **Input Validation**: Test the system with malicious input (e.g., SQL injection, cross-site scripting) to ensure that it properly validates and sanitizes user input.\n3. **Session Management**: Verify that the system properly manages user sessions to prevent unauthorized access to debit card limits.\n\n**Usability Test Cases:**\n\n1. **Error Message Clarity**: Test that error messages are clear and concise when a user enters an invalid or unsupported limit.\n2. **Confirmation Message**: Verify that the confirmation message is displayed after a successful update and is clear about the new limits.\n3. **User Interface**: Test that the user interface is intuitive and easy to use, with clear labels and instructions for updating debit card limits.\n\n**Compatibility Test Cases:**\n\n1. **Browser Compatibility**: Test the update debit card limits feature on different browsers (e.g., Chrome, Firefox, Safari, Edge) to ensure compatibility.\n2. **Device Compatibility**: Test the feature on different devices (e.g., desktop, laptop, mobile, tablet) to ensure compatibility.\n3. **Operating System Compatibility**: Test the feature on different operating systems (e.g., Windows, macOS, Android, iOS) to ensure compatibility.\n\n**Recovery Test Cases:**\n\n1. **Network Failure**: Test that the system can recover from a network failure during the update process.\n2. **System Failure**: Test that the system can recover from a system failure during the update process.\n3. **Database Failure**: Test that the system can recover from a database failure during the update process.\n\n**Scalability Test Cases:**\n\n1. **Horizontal Scaling**: Test that the system can scale horizontally (e.g., add more servers) to handle increased traffic.\n2. **Vertical Scaling**: Test that the system can scale vertically (e.g., increase server resources) to handle increased traffic.\n3. **Data Storage**: Test that the system can handle large amounts of data storage for user debit card limits.\n\n**Reliability Test Cases:**\n\n1. **Failover Testing**: Test that the system can failover to a backup system in case of a failure.\n2. **Redundancy Testing**: Test that the system has redundant components to ensure high availability.\n3. **Backup and Restore**: Test that the system can backup and restore debit card limits data in case of a failure."
+
+
+6) using notepad++ introduced actual CRLF to get formatted output.
+Here are some non-functional test cases for the use case \"Update Debit Card Limits\":
+
+**Performance Test Cases:**
+
+1. **Response Time**: Verify that the update debit card limits feature responds within 2 seconds when a user submits a valid request.
+2. **Load Testing**: Test the system with a large number of concurrent users (e.g., 1000) updating their debit card limits to ensure the system can handle the load without significant performance degradation.
+3. **Stress Testing**: Test the system with an extremely large number of concurrent users (e.g., 10,000) updating their debit card limits to identify the breaking point.
+
+**Security Test Cases:**
+
+1. **Authentication Bypass**: Attempt to update debit card limits without authenticating to ensure that the system requires authentication before allowing changes.
+2. **Input Validation**: Test the system with malicious input (e.g., SQL injection, cross-site scripting) to ensure that it properly validates and sanitizes user input.
+3. **Session Management**: Verify that the system properly manages user sessions to prevent unauthorized access to debit card limits.
+
+**Usability Test Cases:**
+
+1. **Error Message Clarity**: Test that error messages are clear and concise when a user enters an invalid or unsupported limit.
+2. **Confirmation Message**: Verify that the confirmation message is displayed after a successful update and is clear about the new limits.
+3. **User Interface**: Test that the user interface is intuitive and easy to use, with clear labels and instructions for updating debit card limits.
+
+**Compatibility Test Cases:**
+
+1. **Browser Compatibility**: Test the update debit card limits feature on different browsers (e.g., Chrome, Firefox, Safari, Edge) to ensure compatibility.
+2. **Device Compatibility**: Test the feature on different devices (e.g., desktop, laptop, mobile, tablet) to ensure compatibility.
+3. **Operating System Compatibility**: Test the feature on different operating systems (e.g., Windows, macOS, Android, iOS) to ensure compatibility.
+
+**Recovery Test Cases:**
+
+1. **Network Failure**: Test that the system can recover from a network failure during the update process.
+2. **System Failure**: Test that the system can recover from a system failure during the update process.
+3. **Database Failure**: Test that the system can recover from a database failure during the update process.
+
+**Scalability Test Cases:**
+
+1. **Horizontal Scaling**: Test that the system can scale horizontally (e.g., add more servers) to handle increased traffic.
+2. **Vertical Scaling**: Test that the system can scale vertically (e.g., increase server resources) to handle increased traffic.
+3. **Data Storage**: Test that the system can handle large amounts of data storage for user debit card limits.
+
+**Reliability Test Cases:**
+
+
+
+
+
+1. **Failover Testing**: Test that the system can failover to a backup system in case of a failure.
+2. **Redundancy Testing**: Test that the system has redundant components to ensure high availability.
+3. **Backup and Restore**: Test that the system can backup and restore debit card limits data in case of a failure.

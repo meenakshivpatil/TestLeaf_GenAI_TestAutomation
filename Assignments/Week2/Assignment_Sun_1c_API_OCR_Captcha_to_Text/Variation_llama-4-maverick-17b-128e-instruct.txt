@@ -1,0 +1,70 @@
+
+With Maverick model, the interpreation is also mathematical, instead of extracting only the text chars.
+
+If  i give "text": "What are the chars in the captcha image?", then output becomes very precise i.e. The captcha image contains the characters: V6T9JBCDS.
+
+
+{
+  "model": "meta-llama/llama-4-maverick-17b-128e-instruct",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "What's in this image?"
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAeAB4AAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCABOAW8DASIAAhEBAxEB/
+			
+			==========  ===============
+			==========  ===============
+			==========  ===============
+			
+			          }
+        }
+      ]
+    }
+  ],
+  "temperature": 1,
+  "max_completion_tokens": 1024,
+  "top_p": 1,
+  "stream": false,
+  "stop": null
+}
+
+
+{
+    "id": "chatcmpl-35bb855c-ad99-4c87-a6d4-6b64c2dc8b95",
+    "object": "chat.completion",
+    "created": 1760627600,
+    "model": "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "The image displays a mathematical expression, which appears to be a stylized representation of a formula. The expression is written in black text on a white background.\n\n*   The expression is: $\\sqrt{6T9}JBC_D^S$\n*   The expression includes:\n    *   A square root symbol ($\\sqrt{}$) surrounding the numbers 6, T, and 9.\n    *   The letters J, B, and C, which appear to be part of the expression.\n    *   A subscript D and a superscript S, indicating that the letter C is being subscripted with D and superscripted with S.\n\nThe image presents a stylized mathematical expression that combines numbers, letters, and mathematical symbols in a unique way."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "queue_time": 0.070998608,
+        "prompt_tokens": 454,
+        "prompt_time": 0.028723102,
+        "completion_tokens": 152,
+        "completion_time": 0.364188582,
+        "total_tokens": 606,
+        "total_time": 0.392911684
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_d2c1f7e199",
+    "x_groq": {
+        "id": "req_01k7psaajcfksrnbe64efq41ad"
+    },
+    "service_tier": "on_demand"
+}

@@ -1,0 +1,17 @@
+Homework Assignment :
+
+- Take one of your office/retail application DOM structure,convert into selenium /playwright / cypress code 
+- You are going to write prompt to convert selenium to playwright typescript	
+- Once you convert, you need to copy to this URL and run !
+
+https://try.playwright.tech/?l=playwright-test
+
+Hint: Use ICE POT framework to generate !! 
+
+Note: 
+
+- The selenium code should be working code 
+
+sample code available in below repository
+
+https://github.com/TestLeafInc/TestLeafSeleniumTraining

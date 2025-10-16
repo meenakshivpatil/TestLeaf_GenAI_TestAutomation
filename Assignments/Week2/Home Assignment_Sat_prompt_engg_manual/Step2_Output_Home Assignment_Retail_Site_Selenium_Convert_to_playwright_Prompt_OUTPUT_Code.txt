@@ -1,0 +1,42 @@
+const { test, expect } = require('@playwright/test');
+
+
+
+
+test('@blinkit', async ({ page }) => {
+   
+
+  // Set test timeout to 60 seconds
+  test.setTimeout(60 * 1000);
+
+  // Step 1: Navigate to the Blinkit website
+  await page.goto('https://blinkit.com/');
+
+  // Step 2: Wait for the delivery location input to be visible
+  const locationInput = page.locator("input[placeholder='search delivery location']");
+  await expect(locationInput).toBeVisible({ timeout: 60000 });
+
+  // Step 3: Type "chinchawad" into the delivery location input field
+  await locationInput.fill('chinchawad');
+
+  // Step 4: Wait for the list of suggestions to appear
+  const locationListItems = page.locator(".LocationSearchList__LocationListContainer-sc-93rfr7-0");
+  await expect(locationListItems.first()).toBeVisible({ timeout: 60000 });
+
+  // Step 5: Loop through location items and click on "Chinchwad Gaon"
+  const itemCount = await locationListItems.count();
+  for (let i = 0; i < itemCount; i++) {
+    const item = locationListItems.nth(i);
+    const label = item.locator(".LocationSearchList__LocationLabel-sc-93rfr7-2");
+    const text = await label.textContent();
+
+    if (text?.trim().toLowerCase() === 'chinchwad gaon') {
+      await item.click();
+      console.log(`Selected location: ${text}`);
+      break;
+    }
+  }
+
+  // Optional: Verify that the homepage or selected location UI is updated accordingly
+  // (Add assertion here if applicable)
+});

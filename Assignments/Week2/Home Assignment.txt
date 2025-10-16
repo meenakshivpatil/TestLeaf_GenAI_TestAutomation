@@ -1,4 +1,35 @@
-Homework Assignment :
+Home Assignments 1 
+
+Build the following API requests
+
+a) Provide a user story from your project or sample userstory--> ask to convert into non-functional testcases
+b) Confirmation of the audio (recorded content of your voice) converted into correct text
+
+( sample audio available in https://getsamplefiles.com/sample-audio-files/opus#google_vignette)
+
+c) Provide captcha (OCR images) as base64 string from different site --> confirm their text
+
+Note: Test all these with different models. Check which one is providing better output
+
+Homework Assignment 2:
+
+Integrate the prompt to your API (using postman) and confirm the response (json)
+
+Objective: You can integrate prompt + LLM API
+
+
+Homework Assignment 3 & 4:
+
+Generate test data for credit card applications for different types of cards and conditions
+
+Notes:
+
+- Use ICE POT framework
+- Integrate with API to validate the response
+
+
+
+Home Assignment :(Saturday)
 
 - Take one of your office/retail application DOM structure,convert into selenium /playwright / cypress code 
 - You are going to write prompt to convert selenium to playwright typescript	
@@ -15,3 +46,8 @@ Note:
 sample code available in below repository
 
 https://github.com/TestLeafInc/TestLeafSeleniumTraining
+
+
+Optional homework:
+
+Try in your office apps.
