@@ -1,0 +1,192 @@
+prompts.js
+
+
+
+/**
+ * Test Data Prompt
+ */
+DEFAULT_PROMPTS.DATA = `
+    Instructions:
+    - For every input field, generate random test data based on number of records
+    - Use Indian realistic dataset (like names, addresses, pin codes, mobile numbers).
+    - Include realistic data variations (e.g., different names, locations).
+    - Ensure data privacy and compliance (e.g., anonymize sensitive information).
+    - Generate realistic data distributions (e.g., age, income).
+    - Generate --> multiple random test data records in JSON format.
+    
+
+    Context:
+    DOM:
+    \`\`\`html
+    \${domContent}
+    \`\`\`
+
+    Example:
+    [
+  {
+    "applicant_id": 1,
+    "name": "Ananya Sharma",
+    "age": 25,
+    "address": "123 MG Road, Pune, Maharashtra",
+    "employment_status": "Full-time",
+    "annual_income": 35000,
+    "credit_score": 720,
+    "credit_history": "No prior credit",
+    "preferred_card_type": "Student Credit Card",
+    "card_features": "No annual fee, Cashback rewards",
+    "loan_amount_requested": 5000,
+    "card_approval_decision": "Approved",
+    "reasons_for_rejection": null
+  },
+  {
+    "applicant_id": 2,
+    "name": "Rajesh Kumar",
+    "age": 35,
+    "address": "456 Residency Road, Bengaluru, Karnataka",
+    "employment_status": "Full-time",
+    "annual_income": 95000,
+    "credit_score": 810,
+    "credit_history": "Excellent",
+    "preferred_card_type": "Premium Rewards Card",
+    "card_features": "Travel miles, Higher credit limit, No foreign transaction fees",
+    "loan_amount_requested": 20000,
+    "card_approval_decision": "Approved",
+    "reasons_for_rejection": null
+  },
+  {
+    "applicant_id": 3,
+    "name": "Meena Reddy",
+    "age": 55,
+    "address": "789 Banjara Hills, Hyderabad, Telangana",
+    "employment_status": "Retired",
+    "annual_income": 22000,
+    "credit_score": 850,
+    "credit_history": "Excellent",
+    "preferred_card_type": "Cashback Credit Card",
+    "card_features": "0% APR, No annual fee, Cashback on groceries",
+    "loan_amount_requested": 1500,
+    "card_approval_decision": "Approved",
+    "reasons_for_rejection": null
+  }
+]
+
+
+    Persona:
+    - Audience: Automation engineer.
+
+    Output Format:
+    - Single JSON array.
+
+    Tone:
+    - Clean, maintainable, enterprise-ready.
+  `;
+
+// Add to types map
+CODE_GENERATOR_TYPES.DATA = 'Data';
+
+
+
+chat.js ----> replace below function
+
+    getPromptKeys(language, engine) {
+        const checkboxes = Array.from(document.querySelectorAll('input[name="javaGenerationMode"]:checked'));
+        const promptKeys = [];
+        const lang = language?.toLowerCase() || '';
+        const eng = engine?.toLowerCase() || '';
+
+        // Extract selected generation modes
+        const isFeatureChecked = checkboxes.some(box => box.value === 'FEATURE');
+        const isPageChecked = checkboxes.some(box => box.value === 'PAGE');
+        const isTestDataChecked = checkboxes.some(box => box.value === 'DATA');
+        // Validate that at least one option is selected
+        if (!isFeatureChecked && !isPageChecked && !isTestDataChecked) {
+            console.warn('No generation mode selected. Defaulting to Page Object generation.');
+            // Default fallback to page object generation
+            if (this.isJavaSelenium(lang, eng)) {
+                promptKeys.push('SELENIUM_JAVA_PAGE_ONLY');
+            }
+            return promptKeys;
+        }
+
+        // Generate appropriate prompt keys based on selections and language/engine combination
+        const combo = `${isFeatureChecked ? 1 : 0}${isPageChecked ? 1 : 0}${isTestDataChecked ? 1 : 0}`;
+        switch (combo) {
+            // feature + page (with or without test data)
+            case '110':
+            case '111':
+            if (this.isJavaSelenium(lang, eng)) {
+                promptKeys.push('CUCUMBER_WITH_SELENIUM_JAVA_STEPS');
+            } else if (lang === 'typescript' && eng === 'playwright') {
+                // Playwright + TypeScript: only Page object supported currently
+                // We'll generate the Playwright TypeScript Page Object and a feature file separately
+                promptKeys.push('PLAYWRIGHT_TYPESCRIPT_PAGE_ONLY');
+                promptKeys.push('CUCUMBER_ONLY');
+            } else {
+                promptKeys.push('CUCUMBER_ONLY');
+                this.addUnsupportedLanguageMessage(lang, eng);
+            }
+            if (isTestDataChecked) {
+                promptKeys.push('DATA');
+            }
+            break;
+
+            // feature only (with or without test data)
+            case '100':
+            case '101':
+            promptKeys.push('CUCUMBER_ONLY');
+            if (isTestDataChecked) {
+                promptKeys.push('DATA');
+            }
+            break;
+
+            // page only (with or without test data)
+            case '010':
+            case '011':
+            if (this.isJavaSelenium(lang, eng)) {
+                promptKeys.push('SELENIUM_JAVA_PAGE_ONLY');
+            } else if (lang === 'typescript' && eng === 'playwright') {
+                promptKeys.push('PLAYWRIGHT_TYPESCRIPT_PAGE_ONLY');
+            } else {
+                this.addUnsupportedLanguageMessage(lang, eng);
+            }
+            if (isTestDataChecked) {
+                promptKeys.push('DATA');
+            }
+            break;
+
+            // test data only
+            case '001':
+            promptKeys.push('DATA');
+            break;
+
+            // safety fallback (shouldn't be reached because of earlier validation)
+            default:
+            if (this.isJavaSelenium(lang, eng)) {
+                promptKeys.push('SELENIUM_JAVA_PAGE_ONLY');
+            }
+            if (isTestDataChecked) {
+                promptKeys.push('DATA');
+            }
+            break;
+        }
+
+        return promptKeys;
+    }
+	
+	
+
+panel.html ----> add below
+
+<label>
+              <input 
+                type="checkbox" 
+                name="javaGenerationMode" 
+                id="javaGenModePage"
+                value="DATA"
+              />
+              Test Data
+</label>
+
+	
+	
+
